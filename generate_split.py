@@ -25,6 +25,11 @@ file_names_test = []
 Your code below. 
 '''
 
+train_num = round(train_frac*len(file_names))
+np.random.shuffle(file_names)
+file_names_train = file_names[0:train_num]
+file_names_test = file_names[train_num:]
+
 assert (len(file_names_train) + len(file_names_test)) == len(file_names)
 assert len(np.intersect1d(file_names_train,file_names_test)) == 0
 
@@ -32,7 +37,7 @@ np.save(os.path.join(split_path,'file_names_train.npy'),file_names_train)
 np.save(os.path.join(split_path,'file_names_test.npy'),file_names_test)
 
 if split_test:
-    with open(os.path.join(gts_path, 'annotations.json'),'r') as f:
+    with open(os.path.join(gts_path, 'formatted_annotations_mturk.json'),'r') as f:
         gts = json.load(f)
     
     # Use file_names_train and file_names_test to apply the split to the
@@ -43,10 +48,16 @@ if split_test:
     Your code below. 
     '''
     
-    with open(os.path.join(gts_path, 'annotations_train.json'),'w') as f:
+    for train_name in file_names_train:
+        gts_train[train_name] = gts[train_name]
+
+    for test_name in file_names_test:
+        gts_test[test_name] = gts[test_name]
+    
+    with open(os.path.join(gts_path, 'annotations_mturk_train.json'),'w') as f:
         json.dump(gts_train,f)
     
-    with open(os.path.join(gts_path, 'annotations_test.json'),'w') as f:
+    with open(os.path.join(gts_path, 'annotations_mturk_test.json'),'w') as f:
         json.dump(gts_test,f)
     
     
