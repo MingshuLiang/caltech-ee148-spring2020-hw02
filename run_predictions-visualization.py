@@ -190,7 +190,7 @@ data_path = 'data/RedLights2011_Medium'
 # load splits: 
 split_path = 'data/hw02_splits'
 file_names_train = ["RL-076.jpg","RL-107.jpg","RL-012.jpg","RL-278.jpg","RL-167.jpg","RL-268.jpg","RL-213.jpg"] #failed examples
-#succeeded examples: ["RL-027.jpg","RL-096.jpg","RL-217.jpg","RL-285.jpg","RL-199.jpg","RL-332.jpg"]
+#succeeded examples: ["RL-016.jpg","RL-096.jpg","RL-217.jpg","RL-285.jpg","RL-199.jpg","RL-217.jpg"]
 #file_names_test = np.load(os.path.join(split_Path,'file_names_test.npy'))
 
 # set a path for saving predictions:
